@@ -1,5 +1,5 @@
 
-# Project Title
+# Data Science Web App
 
 **Data Science Web App** is simply web application which scraps Natural Gas data from U.S. Energy Information Administration (EIA). It uses RESTAPI to get information from EIA Website. Web App functionality is provided by Streamlit framework. Data preparation is possible due to Pandas.
 
