@@ -20,7 +20,7 @@ st.title("Data Science Web App")
 #---------------------------------#
 
 st.markdown("""
-This app retrieves energy resources data for the coal and natural gas usage!
+This app retrieves energy resources data for the natural gas usage and price!
 """)
 
 expander_bar = st.expander("Details")
