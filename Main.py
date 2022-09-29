@@ -1,10 +1,5 @@
 import streamlit as st
 import pandas as pd
-import requests
-import matplotlib.pyplot as plt
-import numpy as np
-from datetime import date
-import matplotlib.ticker as ticker
 from PIL import Image
 
 image = Image.open('src\logo.png')
