@@ -3,7 +3,7 @@ import calendar
 
 from scraping import scrap, scrap_inside
 from download import filedownload
-from plot import chart
+from plot import chart_data_prep
 
 st.set_page_config(layout="wide")
 
