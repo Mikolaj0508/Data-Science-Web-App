@@ -1,17 +1,16 @@
 import pandas as pd
-import matplotlib as plt
-import streamlit as st
+import numpy as np
 
-def chart(dataframe, area):
-    fig, ax = plt.subplots()
-    dataframe.dropna()
-    #dataframe.fillna(method='backfill')
+def chart_data_prep(dataframe, area):
+    dataframe.replace(["NaN", 'NaT'], np.nan, inplace = True)
+    dataframe = dataframe.dropna()
     dataframe.groupby(['period'],dropna=True).mean()
     z = dataframe[dataframe.duoarea == area].sort_values('period')
-    y = dataframe.value[dataframe.duoarea == area]
-    x = dataframe.period[dataframe.duoarea == area].sort_values()
-    ax.plot(x,y)
-    fig.autofmt_xdate()
-    for tick in ax.get_xticklabels()[::2]:
-      tick.set_visible(False)
-    return fig,ax
+    y = z.value
+    x = z.period
+    y.reset_index(drop=True, inplace=True)
+    x.reset_index(drop=True, inplace=True)
+    frames = [x,y]
+    res = pd.concat(frames,axis=1)
+    res.columns = ["Period","Value"]
+    return res
