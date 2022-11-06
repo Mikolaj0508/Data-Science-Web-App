@@ -53,21 +53,19 @@ if st.button('Get raw CSV file:'):
   st.markdown(filedownload(scrap_inside(primary_route,names[route_2],start_y=start_year,start_m=start_month,end_y=end_year,end_m=end_month)[0]), unsafe_allow_html=True)
 
 
-
-def state():
-  st.session_state.is_change = True
+agree_2 = st.checkbox('Pick desired area to plot chart', value=False)
 
 
-if st.button('Get chart:'):
-    st.session_state.is_change = False
-    second_route,areas = scrap_inside(primary_route,names[route_2],start_y=start_year,start_m=start_month,end_y=end_year,end_m=end_month)
-    desired_area = st.select_slider('Pick desired area to plot chart',
-                                    areas,key="is_change", on_change=state())
-    if st.session_state.is_change:
-        st.markdown("Available in future")
-      #fig, ax = chart(second_route,desired_area)
-      #st.pyplot(plt)
+if agree_2:
+  second_route,areas = scrap_inside(primary_route,names[route_2],start_y=start_year,start_m=start_month,end_y=end_year,end_m=end_month)
+  desired_area = st.selectbox('Pick desired area to plot chart', areas)
 
+
+if 'desired_area' not in locals():
+  st.warning('Please choose desired area')
+  st.stop()
+fr = chart_data_prep(second_route,desired_area)
+st.line_chart(fr,x="Period",y="Value")
 
 
 
